@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Grupo4.Api/Grupo4.Api.csproj" />
+  </Folder>
+</Solution>
