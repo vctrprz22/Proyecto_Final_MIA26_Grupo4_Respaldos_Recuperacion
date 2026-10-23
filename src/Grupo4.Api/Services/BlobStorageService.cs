@@ -86,8 +86,11 @@ public class BlobStorageService
         try
         {
             var lista = new List<FileMetadata>();
-            await foreach (var item in _container.GetBlobsAsync(BlobTraits.Metadata))
-                lista.Add(Convertir(item.Name, item.Metadata));
+await foreach (var blob in _container.GetBlobsAsync(
+    new GetBlobsOptions
+    {
+        Traits = BlobTraits.Metadata
+    }))                lista.Add(Convertir(blob.Name, blob.Metadata));
             _logger.LogInformation("Operacion=LISTAR Resultado=OK Cantidad={Cantidad} FechaUtc={FechaUtc}", lista.Count, DateTime.UtcNow);
             return lista;
         }
